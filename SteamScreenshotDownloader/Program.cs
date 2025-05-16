@@ -36,8 +36,8 @@ namespace SteamScreenshotDownloader
                     if (response.IsSuccessStatusCode)
                     {
                         string content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                        string imageUrl = content.Split("actualmediactn")[1].Split("https://steamuserimages-a.akamaihd.net/ugc/")[1].Split("\"")[0];
-                        imageUrl = $"https://steamuserimages-a.akamaihd.net/ugc/{imageUrl}";
+                        string imageUrl = content.Split("actualmediactn")[1].Split("https://images.steamusercontent.com/ugc/")[1].Split("\"")[0];
+                        imageUrl = $"https://images.steamusercontent.com/ugc/{imageUrl}";
 
                         response = client.GetAsync(imageUrl).GetAwaiter().GetResult();
 
@@ -160,7 +160,7 @@ namespace SteamScreenshotDownloader
                         string content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                         username = content.Split("<title>Steam Community ::")[1].Split(" :: Screenshots</title>")[0].Trim();
 
-                        ColorPrint($"Downloading screenshots from ", ConsoleColor.White, false);
+                        ColorPrint($"Fetching screenshots from ", ConsoleColor.White, false);
                         ColorPrint($"{username} ", ConsoleColor.Cyan, false, false);
                         ColorPrint($"Page ", ConsoleColor.White, false, false);
                         ColorPrint($"{currentPage}", ConsoleColor.Cyan, true, false);
